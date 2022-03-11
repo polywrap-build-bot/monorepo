@@ -1,0 +1,7 @@
+format: 0.0.1-prealpha.5
+language: wasm/assemblyscript
+build: ./MODIFIED_WEB3API_MANIFEST_TO_TEST_CONTENT_VERIFICATION.build.yaml
+modules:
+  mutation:
+    module: ./mutation.wasm
+    schema: ./schema.graphql
