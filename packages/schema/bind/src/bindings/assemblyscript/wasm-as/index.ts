@@ -1,8 +1,7 @@
 import * as Functions from "./functions";
-import { reservedWordsAS } from "./reservedWords";
+import { fromReservedWord } from "./reservedWords";
 import { GenerateBindingFn } from "../..";
 import { OutputDirectory, OutputEntry, readDirectory } from "../../../";
-import { fromReservedWord } from "../../../utils/templateFunctions";
 
 import {
   transformTypeInfo,
@@ -171,7 +170,7 @@ function generateFiles(
             dirent.data,
             {
               ...(config as Record<string, unknown>),
-              handleKeywords: fromReservedWord(reservedWordsAS),
+              handleKeywords: fromReservedWord,
             },
             subTemplates
           );

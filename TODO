@@ -1,3 +1,5 @@
 - add "name" to the root manifest
 - add "displayName" to the meta manifest
 - try to reduce changes within schema-bind (excess options being passed in)
+- we should just be able to iterate through all "modules", access a typeInfo+schema+outputDir, and generate the code.
+- - this would remove the concept of: query,mutation,combined

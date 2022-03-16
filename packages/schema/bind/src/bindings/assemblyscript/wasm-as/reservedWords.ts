@@ -1,3 +1,11 @@
+export function fromReservedWord(text: string, render: (text: string) => string): string {
+  const rendered: string = render(text);
+  if (reservedWordsAS.has(rendered)) {
+    return "m_" + rendered;
+  }
+  return rendered;
+}
+
 // based on:
 // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 // - https://github.com/AssemblyScript/assemblyscript/blob/f54dbfb527842f3d68f18643bb614d104b4f0160/src/common.ts#L107
