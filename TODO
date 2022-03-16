@@ -1,0 +1,3 @@
+- add "name" to the root manifest
+- add "displayName" to the meta manifest
+- try to reduce changes within schema-bind (excess options being passed in)
