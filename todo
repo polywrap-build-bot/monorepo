@@ -1,3 +1,6 @@
+- Rename: invocation.gracefulCancel()
+- Test: better approach client-instance-threads?
+
 - invoke cancel
 - query cancel
 - subscription cancel

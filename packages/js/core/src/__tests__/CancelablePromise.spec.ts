@@ -53,7 +53,7 @@ describe("CancelablePromise", () => {
       }, 100);
     });
 
-    cancelable.cancel();
+    cancelable.gracefulCancel();
 
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -78,7 +78,7 @@ describe("CancelablePromise", () => {
       },
     );
     promise.then((value) => result = value);
-    promise.cancel();
+    promise.gracefulCancel();
 
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -111,7 +111,7 @@ describe("CancelablePromise", () => {
     };
 
     const race = createPromises();
-    race.promiseA.cancel();
+    race.promiseA.gracefulCancel();
 
     const raceResult = await Promise.race([
       race.promiseA,
@@ -146,7 +146,7 @@ describe("CancelablePromise", () => {
       .then(() => results.push("fourth"));
 
     await sleep(300);
-    promise.cancel();
+    promise.gracefulCancel();
 
     await sleep(1000);
 

@@ -2,6 +2,10 @@
 // https://www.npmjs.com/package/cancelable-promise
 // https://github.com/alkemics/CancelablePromise
 
+// NOTE:
+// This will only cancel a promise chain, and cannot
+// stop the execution of an already executing function.
+
 class CancelablePromiseInternal<T = any> {
   private internals: Internals;
   private promise: Promise<T>;
@@ -23,7 +27,7 @@ class CancelablePromiseInternal<T = any> {
     internals?: Internals;
     promise?: Promise<T>;
   }) {
-    this.cancel = this.cancel.bind(this);
+    this.gracefulCancel = this.gracefulCancel.bind(this);
     this.internals = internals;
     this.promise =
       promise ||
@@ -96,7 +100,7 @@ class CancelablePromiseInternal<T = any> {
     );
   }
 
-  cancel(): void {
+  gracefulCancel(): void {
     this.internals.isCanceled = true;
     const callbacks = this.internals.onCancelList;
     this.internals.onCancelList = [];
@@ -189,7 +193,7 @@ function makeAllCancelable(iterable: any, promise: Promise<any>) {
   internals.onCancelList.push(() => {
     for (const resolvable of iterable) {
       if (isCancelablePromise(resolvable)) {
-        resolvable.cancel();
+        resolvable.gracefulCancel();
       }
     }
   });
